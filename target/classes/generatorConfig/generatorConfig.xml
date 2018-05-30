@@ -24,14 +24,14 @@
 		</javaModelGenerator>
 
 		<!-- 生成mapper的包名和位置 -->
-		<sqlMapGenerator targetPackage="com.ship.commom.mapper"
+		<sqlMapGenerator targetPackage="com.ship.common.mapper"
 			targetProject="ship">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- 数据库表名生成名 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.ship.commom.mapper" targetProject="ship">
+			targetPackage="com.ship.common.mapper" targetProject="ship">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 

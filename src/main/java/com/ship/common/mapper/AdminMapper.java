@@ -1,4 +1,4 @@
-package com.ship.commom.mapper;
+package com.ship.common.mapper;
 
 import com.ship.domain.Admin;
 

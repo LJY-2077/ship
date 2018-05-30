@@ -17,6 +17,8 @@ public class Admin {
 
     private String mail;
 
+    private String headIcon;
+
     private String address;
 
     public Integer getId() {
@@ -81,6 +83,14 @@ public class Admin {
 
     public void setMail(String mail) {
         this.mail = mail == null ? null : mail.trim();
+    }
+
+    public String getHeadIcon() {
+        return headIcon;
+    }
+
+    public void setHeadIcon(String headIcon) {
+        this.headIcon = headIcon == null ? null : headIcon.trim();
     }
 
     public String getAddress() {

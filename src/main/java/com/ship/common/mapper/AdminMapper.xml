@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ship.commom.mapper.AdminMapper" >
+<mapper namespace="com.ship.common.mapper.AdminMapper" >
   <resultMap id="BaseResultMap" type="com.ship.domain.Admin" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -10,10 +10,11 @@
     <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
     <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="head_icon" property="headIcon" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, gender, age, tel, nick_name, identity_card, mail, address
+    id, name, gender, age, tel, nick_name, identity_card, mail, head_icon, address
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,12 +29,12 @@
   <insert id="insert" parameterType="com.ship.domain.Admin" >
     insert into admin (id, name, gender, 
       age, tel, nick_name, 
-      identity_card, mail, address
-      )
+      identity_card, mail, head_icon, 
+      address)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
       #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{identityCard,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
-      )
+      #{identityCard,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{headIcon,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ship.domain.Admin" >
     insert into admin
@@ -61,6 +62,9 @@
       </if>
       <if test="mail != null" >
         mail,
+      </if>
+      <if test="headIcon != null" >
+        head_icon,
       </if>
       <if test="address != null" >
         address,
@@ -91,6 +95,9 @@
       <if test="mail != null" >
         #{mail,jdbcType=VARCHAR},
       </if>
+      <if test="headIcon != null" >
+        #{headIcon,jdbcType=VARCHAR},
+      </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
@@ -120,6 +127,9 @@
       <if test="mail != null" >
         mail = #{mail,jdbcType=VARCHAR},
       </if>
+      <if test="headIcon != null" >
+        head_icon = #{headIcon,jdbcType=VARCHAR},
+      </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
@@ -135,6 +145,7 @@
       nick_name = #{nickName,jdbcType=VARCHAR},
       identity_card = #{identityCard,jdbcType=VARCHAR},
       mail = #{mail,jdbcType=VARCHAR},
+      head_icon = #{headIcon,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
