@@ -27,8 +27,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 *
 */
 @Configuration
-@EnableWebMvc
-@ComponentScan
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -39,8 +37,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/");
+        registry.addResourceHandler("/statics/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/");
         registry.addResourceHandler("/templates/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/templates/");
+//        registry.addResourceHandler("/WEB-INF/page/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/WEB-INF/");
 
         super.addResourceHandlers(registry);  
         }
@@ -52,7 +51,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截规则：除了login，其他都拦截判断
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/adminUser/login");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
         super.addInterceptors(registry);
     }
 

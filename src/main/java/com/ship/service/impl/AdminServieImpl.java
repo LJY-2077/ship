@@ -8,8 +8,11 @@
 */
 package com.ship.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ship.common.mapper.ext.AdminAMapper;
+import com.ship.domain.Admin;
 import com.ship.service.AdminService;
 
 /**
@@ -21,5 +24,21 @@ import com.ship.service.AdminService;
  */
 @Service
 public class AdminServieImpl implements AdminService {
+	
+	@Autowired 
+	private AdminAMapper adminAMapper;
+
+	/* (非 Javadoc)
+	* <p>Title: findByPro</p>
+	* <p>Description: </p>
+	* @param admin
+	* @return
+	* @see com.ship.service.AdminService#findByPro(com.ship.domain.Admin)
+	*/ 
+	@Override
+	public Admin findByPro(Admin admin) {
+		// TODO Auto-generated method stub
+		return adminAMapper.findByPro(admin);
+	}
 
 }

@@ -8,6 +8,8 @@
 */ 
 package com.ship.service;
 
+import com.ship.domain.Admin;
+
 /**
 * @ClassName: AdminService
 * @Description: TODO(这里用一句话描述这个类的作用)
@@ -16,5 +18,15 @@ package com.ship.service;
 *
 */
 public interface AdminService {
+
+	/**
+	* @Title: findByPro
+	* @Description: TODO(这里用一句话描述这个方法的作用)
+	* @param @param admin
+	* @param @return    设定文件
+	* @return Admin    返回类型
+	* @throws
+	*/ 
+	Admin findByPro(Admin admin);
 
 }

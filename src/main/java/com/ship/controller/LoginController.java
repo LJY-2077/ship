@@ -8,12 +8,15 @@
 */
 package com.ship.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ship.domain.Admin;
+import com.ship.service.AdminService;
 
 /**
  * @ClassName: LoginController
@@ -24,12 +27,35 @@ import com.ship.domain.Admin;
  */
 @Controller
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.ship.service" }) // 添加的注解
+@ComponentScan(basePackages = { "com.ship" }) // 添加的注解
 public class LoginController {
 
-	@RequestMapping("/")
-	public String login(Admin admin) {
+	@Autowired
+	private AdminService adminService;
+
+	@RequestMapping("/login")
+	public String login() {
 		return "login";
+	}
+
+	@RequestMapping("/adminLogin")
+	public String userLogin(Admin admin, Model model) {
+		Admin ad = adminService.findByPro(admin);
+		
+		if (ad!=null) {
+			model.addAttribute("admin", ad);
+			return "index";
+		}else {
+			return "redirect:/login";
+		}
+		
+	}
+	
+
+	@RequestMapping("/index")
+	public String index() {
+
+		return "index";
 	}
 
 }
