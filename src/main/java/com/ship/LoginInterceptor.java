@@ -37,9 +37,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		System.out.println(request.getRequestURI());
 
-		if (request.getRequestURI().contains("adminLogin")) {
+		if (request.getRequestURI().contains("userLogin")) {
 			return true;
-		}
+		}else
 		// 判断用户ID是否存在，不存在就跳转到登录界面
 		if (session.getAttribute("admin") == null) {
 			logger.info("------:跳转到login页面！");

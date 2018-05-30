@@ -8,12 +8,15 @@
 */
 package com.ship.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ship.domain.Admin;
 import com.ship.service.AdminService;
@@ -37,25 +40,25 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
-
-	@RequestMapping("/adminLogin")
-	public String userLogin(Admin admin, Model model) {
-		Admin ad = adminService.findByPro(admin);
-		
-		if (ad!=null) {
-			model.addAttribute("admin", ad);
-			return "index";
-		}else {
-			return "redirect:/login";
-		}
-		
-	}
 	
-
 	@RequestMapping("/index")
 	public String index() {
 
 		return "index";
 	}
+
+	@RequestMapping("/userLogin")
+	@ResponseBody
+	public Admin userLogin(HttpServletRequest request, Admin admin) {
+		Admin ad = adminService.findByPro(admin);
+
+		if (ad != null) {
+			request.getSession().setAttribute("admin", ad);
+			return ad;
+		} else {
+			return null;
+		}
+	}
+
 
 }
